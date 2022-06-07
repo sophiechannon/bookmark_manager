@@ -1,6 +1,8 @@
-feature "testing homepage" do
-  scenario "Homepage contains text" do
-    visit "/"
-    expect(page).to have_text("Bookmark Manager")
+# frozen_string_literal: true
+
+feature 'testing homepage' do
+  scenario 'Homepage contains text' do
+    visit '/'
+    expect(page).to have_text('Bookmark Manager')
   end
 end

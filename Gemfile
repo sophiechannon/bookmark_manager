@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
+gem 'capybara'
+gem 'rspec'
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'rspec'
-gem 'capybara'
 
 group :test do
   gem 'simplecov', require: false
