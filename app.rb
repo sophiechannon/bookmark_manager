@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'pg'
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/bookmark'

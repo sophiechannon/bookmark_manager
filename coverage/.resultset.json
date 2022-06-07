@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/fridayshoes/Projects/Week4/Collabs/bookmark_manager/spec/bookmark_spec.rb": {
+      "/Users/sophiegilder/Makers/bookmark_manager/spec/bookmark_spec.rb": {
         "lines": [
           1,
           null,
@@ -18,7 +18,7 @@
           null
         ]
       },
-      "/home/fridayshoes/Projects/Week4/Collabs/bookmark_manager/spec/features/index_page_spec.rb": {
+      "/Users/sophiegilder/Makers/bookmark_manager/spec/features/index_page_spec.rb": {
         "lines": [
           null,
           null,
@@ -30,7 +30,7 @@
           null
         ]
       },
-      "/home/fridayshoes/Projects/Week4/Collabs/bookmark_manager/spec/features/view_bookmarks_spec.rb": {
+      "/Users/sophiegilder/Makers/bookmark_manager/spec/features/view_bookmarks_spec.rb": {
         "lines": [
           1,
           1,
@@ -43,6 +43,6 @@
         ]
       }
     },
-    "timestamp": 1654616429
+    "timestamp": 1654621923
   }
 }
