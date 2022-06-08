@@ -11,6 +11,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/' do
+    p ENV['ENVIRONMENT']
     'Bookmark Manager'
   end
 
