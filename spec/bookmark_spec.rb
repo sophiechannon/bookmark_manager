@@ -19,7 +19,7 @@ describe Bookmark do
 
     it 'adds a bookmark to the database' do
       connection = PG.connect(dbname: 'bookmark_manager_test')
-      Bookmark.create('http://www.hello.com')
+      Bookmark.create(url: 'http://www.hello.com')
       expect(Bookmark.all).to include('http://www.hello.com')
     end
   end

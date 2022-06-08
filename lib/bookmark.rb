@@ -1,6 +1,6 @@
 class Bookmark
   def self.all
-    if ENV['ENVIRONMENT'] = 'test'
+    if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
     else
       connection = PG.connect(dbname: 'bookmark_manager')
@@ -9,7 +9,7 @@ class Bookmark
     rows.map { |row| row['url'] }
   end  
 
-  def self.create(bookmark)
+  def self.create(url: )
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
       puts "fake"
@@ -17,6 +17,6 @@ class Bookmark
       connection = PG.connect(dbname: 'bookmark_manager')
       puts "real"
     end
-    connection.exec("INSERT INTO bookmarks (url) VALUES('#{bookmark}');")
+    connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}');")
   end
 end
