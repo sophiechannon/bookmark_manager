@@ -9,13 +9,11 @@ class Bookmark
     rows.map { |row| row['url'] }
   end  
 
-  def self.create(url: )
+  def self.create(url)
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
-      puts "fake"
     else
       connection = PG.connect(dbname: 'bookmark_manager')
-      puts "real"
     end
     connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}');")
   end
