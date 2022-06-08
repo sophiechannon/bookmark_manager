@@ -6,6 +6,10 @@ As a user,
 So I can remember which websites I want to visit in the future,
 I'd like to see a list of websites that I have saved.
 
+As a curious user,
+So I can save a website I've visited for later,
+I'd like to be able to add websites to the list.
+
 ![Landing page](./docs/domain_model_bookmark.png?raw=true "Domain Model")
 
 **Production database**
