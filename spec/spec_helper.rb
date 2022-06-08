@@ -1,6 +1,12 @@
-# frozen_string_literal: true
+require_relative './setup_test_database'
 
 ENV['RACK_ENV'] = 'test'
+
+RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
+end
 
 # Bring in the contents of the `app.rb` file. The below is equivalent to: require_relative '../app.rb'
 require_relative '../app'

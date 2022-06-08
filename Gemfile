@@ -6,6 +6,7 @@ gem 'capybara'
 gem 'rspec'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'pg'
 
 group :test do
   gem 'simplecov', require: false
