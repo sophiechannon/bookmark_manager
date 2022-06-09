@@ -3,20 +3,22 @@ require 'bookmark'
 describe Bookmark do
   describe '.all' do
     it 'returns all bookmarks' do
-      Bookmark.create('http://www.makersacademy.com')
-      Bookmark.create('http://www.google.com')
-      Bookmark.create('http://www.macramazing.co.uk')
+      bookmark = Bookmark.create(url: 'http://www.makersacademy.com', title: "Makers Academy")
+      # persisted_data = persisted_data(id: bookmark.id)
 
       bookmarks = Bookmark.all
 
-      expect(bookmarks).to include('http://www.makersacademy.com')
-      expect(bookmarks).to include('http://www.google.com')
-      expect(bookmarks).to include('http://www.macramazing.co.uk')
+      expect(bookmark).to be_a Bookmark
+      expect(bookmark.id).to eq bookmark.id
+      # expect(bookmark.id).to eq persisted_data['id']
+      expect(bookmark.title).to eq'Makers Academy'
+      expect(bookmark.url).to eq 'http://www.makersacademy.com'
     end
 
     it 'adds a bookmark to the database' do
-      Bookmark.create('http://www.hello.com')
-      expect(Bookmark.all).to include('http://www.hello.com')
+      bookmark = Bookmark.create(url: 'http://www.github.com', title: "Github")
+      expect(bookmark.url).to eq 'http://www.github.com'
+      expect(bookmark.title).to eq 'Github'
     end
   end
 end
