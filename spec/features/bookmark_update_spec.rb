@@ -7,15 +7,12 @@ feature 'Bookmark update' do
     expect(page).to have_link('Google Inc.', href: 'http://www.google.com')
     first('.bookmark').click_button 'Edit'
 
-    #to a new page
-    # expect(current_path).to eq "/bookmarks/#{bookmark.id}/edit"
-
     fill_in('title', with: 'Google')
     fill_in('url', with: 'https://www.google.co.uk/')
     click_button 'Update'
-# fill in update information?
 
     expect(current_path).to eq '/bookmarks'
     expect(page).to have_link('Google', href: 'https://www.google.co.uk/')
+    expect(page).to_not have_link('Google Inc', href: 'https://www.google.com/')
   end
 end

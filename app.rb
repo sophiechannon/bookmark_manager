@@ -18,26 +18,29 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks' do
+    p params
     @bookmarks = Bookmarks.all
     erb :'bookmarks/index'
   end
 
-  get '/bookmarks-new' do
+  get '/bookmarks/new' do
     erb :'bookmarks/new'
   end
 
-  post '/bookmarks-new' do
+  post '/bookmarks' do
     Bookmarks.create(url: params[:url], title: params[:title])
     redirect '/bookmarks'
   end
 
   # :id is the id inside the html (inside the <li> tag)
   delete '/bookmarks/:id' do
+    p params
     Bookmarks.delete(id: params[:id])
     redirect ('/bookmarks')
   end
 
   get '/bookmarks/:id/update' do
+    p params
     @bookmark = Bookmarks.find(id: params[:id])
     erb :'bookmarks/edit'
   end
