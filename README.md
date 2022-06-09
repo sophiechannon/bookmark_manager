@@ -10,6 +10,10 @@ As a curious user,
 So I can save a website I've visited for later,
 I'd like to be able to add websites to the list.
 
+As a user,
+So I can free up space in my bookmark manager,
+I'd like to be able to remove bookmarks that I no longer want to remember.
+
 ![Landing page](./docs/domain_model_bookmark.png?raw=true "Domain Model")
 
 **Production database**

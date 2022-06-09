@@ -1,6 +1,6 @@
 class Bookmark
   attr_reader :id, :title, :url
-  @@connection = nil
+  @@connection = PG.connect(dbname: 'bookmark_manager')
 
   def initialize(id:, title:, url:)
     @id = id
@@ -23,13 +23,16 @@ class Bookmark
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
   end
 
+  def self.delete(id:)
+    test_or_dev
+    @@connection.exec_params("DELETE FROM bookmarks WHERE id = $1", [id])
+  end
+
   private
 
   def self.test_or_dev
     if ENV['ENVIRONMENT'] == 'test'
       @@connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      @@connection = PG.connect(dbname: 'bookmark_manager')
     end
   end
 end

@@ -15,10 +15,20 @@ describe Bookmark do
       expect(bookmark.url).to eq 'http://www.makersacademy.com'
     end
 
-    it 'adds a bookmark to the database' do
-      bookmark = Bookmark.create(url: 'http://www.github.com', title: "Github")
-      expect(bookmark.url).to eq 'http://www.github.com'
-      expect(bookmark.title).to eq 'Github'
+    describe '.create' do
+      it 'adds a bookmark to the database' do
+        bookmark = Bookmark.create(url: 'http://www.github.com', title: "Github")
+        expect(bookmark.url).to eq 'http://www.github.com'
+        expect(bookmark.title).to eq 'Github'
+      end
+    end
+
+    describe '.delete' do
+      it 'deletes a bookmark from the database' do
+        bookmark = Bookmark.create(url: 'http://www.github.com', title: "Github")
+        Bookmark.delete(id: bookmark.id)
+        expect(Bookmark.all.length).to eq 0
+      end
     end
   end
 end
