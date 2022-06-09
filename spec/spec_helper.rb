@@ -10,6 +10,7 @@ end
 
 # Bring in the contents of the `app.rb` file. The below is equivalent to: require_relative '../app.rb'
 require_relative '../app'
+require_relative './database_helpers.rb'
 
 # Require all the testing gems
 require 'capybara'

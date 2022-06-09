@@ -4,7 +4,6 @@ describe Bookmark do
   describe '.all' do
     it 'returns all bookmarks' do
       bookmark = Bookmark.create(url: 'http://www.makersacademy.com', title: "Makers Academy")
-      # persisted_data = persisted_data(id: bookmark.id)
 
       bookmarks = Bookmark.all
 
@@ -18,6 +17,8 @@ describe Bookmark do
     describe '.create' do
       it 'adds a bookmark to the database' do
         bookmark = Bookmark.create(url: 'http://www.github.com', title: "Github")
+        persisted_data = persisted_data(id: bookmark.id)
+        expect(bookmark.id).to eq persisted_data['id']
         expect(bookmark.url).to eq 'http://www.github.com'
         expect(bookmark.title).to eq 'Github'
       end
