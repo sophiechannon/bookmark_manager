@@ -1,10 +1,10 @@
+# ./spec/setup_test_database.rb
+
 require 'pg'
 
 def setup_test_database
-  p "Setting up test database..."
-
+  # connect to the testing database, not dev database
   connection = PG.connect(dbname: 'bookmark_manager_test')
-
-  # Clear the counter table
-  connection.exec("TRUNCATE bookmarks;")
+  # truncate the testing database - bookmarks
+  connection.exec('TRUNCATE bookmarks;')
 end

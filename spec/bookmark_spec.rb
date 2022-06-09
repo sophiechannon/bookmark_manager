@@ -1,35 +1,66 @@
-require 'bookmark'
+# ./spec/bookmark_spec.rb
 
-describe Bookmark do
-  describe '.all' do
-    it 'returns all bookmarks' do
-      bookmark = Bookmark.create(url: 'http://www.makersacademy.com', title: "Makers Academy")
+require './lib/bookmarks'
 
-      bookmarks = Bookmark.all
+describe '.all' do
+  it 'returns a list of bookmarks' do
+    # connect to testing DB and insert testing db entries
+    connection = PG.connect(dbname: 'bookmark_manager_test')
+    bookmark_test = Bookmarks.create(url: 'http://www.makersacademy.com', title: 'Makers Academy')
+    Bookmarks.create(url: 'http://www.destroyallsoftware.com', title: 'Destroy All Software')
+    Bookmarks.create(url: 'http://www.google.com', title: 'Google')
+    
+    # Unit test for Bookmark class
+    bookmarks = Bookmarks.all
+    expect(bookmarks.size).to eq 3
+    expect(bookmarks.first).to be_a Bookmarks
+    expect(bookmarks.first.id).to eq bookmark_test.id
+    expect(bookmarks.first.url).to eq 'http://www.makersacademy.com'
+    expect(bookmarks.first.title).to eq 'Makers Academy'
+  end
+end
 
-      expect(bookmark).to be_a Bookmark
-      expect(bookmark.id).to eq bookmark.id
-      # expect(bookmark.id).to eq persisted_data['id']
-      expect(bookmark.title).to eq'Makers Academy'
-      expect(bookmark.url).to eq 'http://www.makersacademy.com'
-    end
+describe '.create' do
+  it 'creates a bookmark and returns it' do
+    bookmark = Bookmarks.create(url: "http://www.makersacademy.com", title: "The Makers Academy")
+    persisted_data = PG.connect(dbname: 'bookmark_manager_test').query("SELECT * FROM bookmarks WHERE id = #{bookmark.id};")
+    # Unit test for Bookmark class
+    expect(bookmark).to be_a Bookmarks
+    expect(bookmark.id).to eq persisted_data.first['id']
+    expect(bookmark.url).to eq 'http://www.makersacademy.com'
+    expect(bookmark.title).to eq 'The Makers Academy'
+  end
 
-    describe '.create' do
-      it 'adds a bookmark to the database' do
-        bookmark = Bookmark.create(url: 'http://www.github.com', title: "Github")
-        persisted_data = persisted_data(id: bookmark.id)
-        expect(bookmark.id).to eq persisted_data['id']
-        expect(bookmark.url).to eq 'http://www.github.com'
-        expect(bookmark.title).to eq 'Github'
-      end
-    end
-
-    describe '.delete' do
-      it 'deletes a bookmark from the database' do
-        bookmark = Bookmark.create(url: 'http://www.github.com', title: "Github")
-        Bookmark.delete(id: bookmark.id)
-        expect(Bookmark.all.length).to eq 0
-      end
+  describe '.delete' do
+    it 'deletes a bookmark' do
+      bookmark = Bookmarks.create(url: "http://www.makersacademy.com", title: "The Makers Academy")
+      Bookmarks.delete(id: bookmark.id)
+      expect(Bookmarks.all.length).to eq 0
     end
   end
+
+  describe '.update' do
+    it 'updates a bookmark' do
+      bookmark = Bookmarks.create(url: "http://www.makersacademy.com", title: "The Makers Academy")
+      expect(bookmark.title).to eq "The Makers Academy"
+
+      bookmark_new = Bookmarks.update(id: bookmark.id, title: 'Google', url: "http://www.google.com")
+      expect(bookmark_new).to be_a Bookmarks
+      expect(bookmark_new.title).to eq "Google"
+      expect(bookmark_new.url).to eq "http://www.google.com"
+    end
+  end
+
+  describe '.find' do
+    it 'finds a bookmark entry with the id' do
+      bookmark = Bookmarks.create(url: "http://www.makersacademy.com", title: "The Makers Academy")
+      result = Bookmarks.find(id: bookmark.id)
+
+      expect(result.id).to eq bookmark.id
+      expect(result.title).to eq "The Makers Academy"
+      expect(result.url).to eq "http://www.makersacademy.com"
+    end
+  end
+
+
 end

@@ -14,6 +14,10 @@ As a user,
 So I can free up space in my bookmark manager,
 I'd like to be able to remove bookmarks that I no longer want to remember.
 
+As a user,
+So I can keep track of changes to websites,
+I want to be able to update the bookmark title or url.
+
 ![Landing page](./docs/domain_model_bookmark.png?raw=true "Domain Model")
 
 **Production database**

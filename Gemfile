@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'capybara'
-gem 'rspec'
-gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'pg'
+# gem "rails"
 
-group :test do
-  gem 'simplecov', require: false
-  gem 'simplecov-console', require: false
-end
+gem "rspec", "~> 3.11"
 
-group :development, :test do
-  gem 'rubocop', '1.20'
-end
+gem "capybara", "~> 3.37", group: test
+
+gem "sinatra", "~> 2.2"
+
+gem "sinatra-contrib", "~> 2.2"
+
+gem "pg", "~> 1.3", group: test
