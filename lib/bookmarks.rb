@@ -1,6 +1,5 @@
 # lib/bookmarks.rb
 require 'pg'
-require_relative './database_connection_setup.rb'
 require_relative './database_connection.rb'
 
 class Bookmarks

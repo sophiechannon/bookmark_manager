@@ -3,6 +3,9 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require './lib/bookmarks'
+require './lib/database_connection_setup.rb'
+require 'uri'
+require 'sinatra/flash'
 
 class BookmarkManager < Sinatra::Base
   configure :development do
@@ -10,7 +13,8 @@ class BookmarkManager < Sinatra::Base
   end
 
   enable :sessions, :method_override
-  # method_override is to allow DELETE method
+   # method_override is to allow DELETE method
+  register Sinatra::Flash
   
   # our routes would go here
   get '/' do
@@ -28,7 +32,12 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/bookmarks' do
-    Bookmarks.create(url: params[:url], title: params[:title])
+    if params[:url] =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      Bookmarks.create(url: params[:url], title: params[:title])
+    else
+      flash[:notice] = "You must submit a valid URL"
+    end
+
     redirect '/bookmarks'
   end
 
