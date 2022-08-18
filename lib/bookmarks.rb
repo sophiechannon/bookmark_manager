@@ -1,6 +1,5 @@
 # lib/bookmarks.rb
 require 'uri'
-require_relative './database_connection.rb'
 
 class Bookmarks
   attr_reader :id, :url, :title
